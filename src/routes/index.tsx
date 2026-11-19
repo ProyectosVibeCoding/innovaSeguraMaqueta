@@ -1,23 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowUpRight, ArrowDown, Video, MapPin, MessageSquare } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { AboutTeaser, Features, CourseCalendar, QuoteBand, Companies, Resources, Eyebrow } from '@/components/editorial';
+import { pageHead } from '@/lib/site-data';
+import obra from '@/assets/obra.webp.asset.json';
+export const Route = createFileRoute('/')({head:()=>({...pageHead('Capacitación en Higiene y Seguridad online','Aprendé prevención laboral con clases online en vivo, feedback personal y normativa argentina. Cursos 2027 y capacitación in company en Córdoba.'),links:[{rel:'preload',as:'image',href:obra.url}],scripts:[{type:'application/ld+json',children:JSON.stringify({'@context':'https://schema.org','@type':'EducationalOrganization',name:'Innova Segura',description:'Capacitación en Higiene y Seguridad laboral online en vivo para Argentina',areaServed:'Argentina'})}]}),component:Index});
+function Index(){return <><section className="hero"><img className="hero-image" src={obra.url} alt="Profesional de Higiene y Seguridad con casco y EPP en obra" fetchPriority="high"/><div className="container hero-inner"><Eyebrow>CÓRDOBA, ARGENTINA · FORMACIÓN PARA TODO EL PAÍS</Eyebrow><h1>Aprendé a prevenir<br/>con quien te<br/><em>acompaña de verdad</em><span className="text-brand">.</span></h1><p className="hero-description">Higiene y Seguridad, con una mirada humana.<br/>Clases en vivo, experiencia compartida y herramientas<br className="hidden md:block"/> para transformar lo que sabés en lo que hacés.</p><div className="hero-actions"><Button asChild size="lg" variant="brand"><Link to="/cursos">Ver cursos 2027 <ArrowUpRight/></Link></Button><Button asChild size="lg" variant="hero"><Link to="/empresas">Capacitación para empresas <ArrowUpRight/></Link></Button></div><div className="hero-meta"><span><Video size={14}/> 100% en vivo</span><span><MessageSquare size={14}/> Acompañamiento personal</span><span><MapPin size={14}/> Normativa argentina</span></div></div><a className="scroll-hint" href="#trayectoria">DESCUBRÍ INNOVA SEGURA <ArrowDown size={13}/></a><span className="hero-note">IMAGEN ILUSTRATIVA · INNOVA SEGURA</span></section><section className="container stats" id="trayectoria" aria-label="Trayectoria">{['Años de experiencia','Alumnos capacitados','Cursos dictados','Provincias alcanzadas'].map(t=><div className="stat" key={t}><strong>[XX]<span className="text-brand">+</span></strong><p>{t}</p></div>)}</section><AboutTeaser/><Features/><CourseCalendar home/><QuoteBand/><Companies/><Resources/></>}

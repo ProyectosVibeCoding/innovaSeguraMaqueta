@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application architecture
+- Keep public marketing pages in top-level TanStack routes, with a shared header, one main landmark and footer in the root layout; this preserves crawlable pages and consistent navigation.
+- Keep editable pending course, contact and community content in a shared data module; never fabricate credentials or conversion destinations.
+- Submit forms through one schema-validated public server function into four private service-role-only tables; visitors may submit but never read personal lead data.
+- Use route head metadata rather than react-helmet, and TanStack server functions rather than new Edge Functions; these match the hosting runtime.

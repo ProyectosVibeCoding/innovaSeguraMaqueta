@@ -1,0 +1,12 @@
+CREATE TABLE public.course_registrations (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), created_at timestamptz NOT NULL DEFAULT now(), name text NOT NULL CHECK (length(name) BETWEEN 1 AND 100), email text NOT NULL CHECK (length(email) <= 255), phone text, course_slug text NOT NULL, message text);
+GRANT ALL ON public.course_registrations TO service_role;
+ALTER TABLE public.course_registrations ENABLE ROW LEVEL SECURITY;
+CREATE TABLE public.company_requests (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), created_at timestamptz NOT NULL DEFAULT now(), name text NOT NULL CHECK (length(name) BETWEEN 1 AND 100), email text NOT NULL CHECK (length(email) <= 255), phone text, company text NOT NULL, sector text, people integer, province text, message text);
+GRANT ALL ON public.company_requests TO service_role;
+ALTER TABLE public.company_requests ENABLE ROW LEVEL SECURITY;
+CREATE TABLE public.guide_requests (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), created_at timestamptz NOT NULL DEFAULT now(), name text NOT NULL CHECK (length(name) BETWEEN 1 AND 100), email text NOT NULL CHECK (length(email) <= 255));
+GRANT ALL ON public.guide_requests TO service_role;
+ALTER TABLE public.guide_requests ENABLE ROW LEVEL SECURITY;
+CREATE TABLE public.contact_submissions (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), created_at timestamptz NOT NULL DEFAULT now(), name text NOT NULL CHECK (length(name) BETWEEN 1 AND 100), email text NOT NULL CHECK (length(email) <= 255), phone text, message text NOT NULL CHECK (length(message) BETWEEN 1 AND 2000));
+GRANT ALL ON public.contact_submissions TO service_role;
+ALTER TABLE public.contact_submissions ENABLE ROW LEVEL SECURITY;

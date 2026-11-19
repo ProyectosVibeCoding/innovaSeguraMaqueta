@@ -1,0 +1,5 @@
+import {createFileRoute,notFound,Link} from '@tanstack/react-router';
+import {PageIntro} from '@/components/editorial';
+import {articles,pageHead} from '@/lib/site-data';
+export const Route=createFileRoute('/recursos_/$slug')({loader:({params})=>{const a=articles.find(a=>a.slug===params.slug);if(!a)throw notFound();return a},head:({loaderData:a})=>pageHead(a?.title??'Recurso no disponible',a?`${a.title}. Recurso de prevención de Innova Segura, en preparación.`:'Recurso no disponible.'),component:Page});
+function Page(){const a=Route.useLoaderData();return <><PageIntro label={a.category} title={a.title} description="[Artículo en preparación: contenido pendiente de revisión profesional]."/><section className="section"><div className="container article-content"><Link to="/recursos" className="text-link">← Volver a recursos</Link><h2>Contenido próximamente.</h2><p>[Introducción, desarrollo, referencias oficiales y recomendaciones prácticas por incorporar].</p><p>Este recurso se publicará después de revisar su contenido y las fuentes normativas.</p><Link to="/contacto" className="text-link">Consultar sobre este tema ↗</Link></div></section></>}
