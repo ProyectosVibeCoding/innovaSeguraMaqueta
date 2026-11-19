@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ArrowUpRight, CalendarDays, Clock3, Video, MessageSquare, BookOpen, Award, UserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { courses, articles } from '@/lib/site-data';
-import obra from '@/assets/obra.webp.asset.json';
+const obra = { url: '/images/seguridad-en-obra.jpg' };
 import { LeadForm } from './lead-form';
 export function Eyebrow({children}:{children:React.ReactNode}){return <div className="eyebrow"><i className="dot"/>{children}</div>}
 export function PageIntro({title,description,label}:{title:string;description:string;label:string}){return <section className="page-intro"><div className="container"><Eyebrow>{label}</Eyebrow><h1>{title}<span className="text-brand">.</span></h1><p>{description}</p></div></section>}
